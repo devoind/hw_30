@@ -20,13 +20,11 @@ from ads.views import *
 from avito import settings
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', root),
-    path('cat/', CategoryView.as_view()),
-    path('cat/<int:pk>/', CategoryDetailView.as_view()),
-    path('ad/', AdView.as_view()),
-    path('ad/<int:pk>/', AdDetailView.as_view()),
-    path('user/', include("users.urls"))
+    # path('', admin.site.urls),
+    # path('', root),
+    path('cat/', include('ads.urls.cat_urls')),
+    path('ad/', include('ads.urls.ad_urls')),
+    path('user/', include('users.urls')),
 ]
 
 if settings.DEBUG:
