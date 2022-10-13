@@ -5,7 +5,7 @@ from django.core.paginator import Paginator
 from django.http import JsonResponse
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, DeleteView, UpdateView
 
 from users.models import User, Location
 
@@ -73,3 +73,26 @@ class UserCreateView(CreateView):
              'locations': [str(u) for u in user.location.all()]
              })
 
+
+@method_decorator(csrf_exempt, name='dispatch')
+class UserUpdateView(UpdateView):
+    model = User
+    fields = ['name']
+
+    def patch(self, request, *args, **kwargs):
+        super().post(request, *args, **kwargs)
+        data = json.loads(request.body)
+        self.object.name = data['name']
+        self.object.save()
+        return JsonResponse({'id': self.object.id, 'name': self.object.name}, safe=False,
+                            json_dumps_params={"ensure_ascii": False})
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+class UserDeleteView(DeleteView):
+    model = User
+    success_url = '/'
+
+    def delete(self, request, *args, **kwargs):
+        super().delete(request, *args, **kwargs)
+        return JsonResponse({'Пользователь удален'}, status=204)
