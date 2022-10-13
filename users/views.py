@@ -30,6 +30,7 @@ class UserListView(ListView):
                  "first_name": user.first_name,
                  "last_name": user.last_name,
                  "role": user.role,
+                 "age": user.age,
                  "total_ads": user.ads.count()
                  })
 
@@ -44,7 +45,7 @@ class UserListView(ListView):
 @method_decorator(csrf_exempt, name='dispatch')
 class UserCreateView(CreateView):
     model = User
-    fields = ['username', 'password', 'first_name', 'last_name', 'role', 'locations']
+    fields = ['username', 'password', 'first_name', 'last_name', 'role', 'locations', 'age']
 
     def post(self, request, *args, **kwargs):
         data = json.loads(request.body)
@@ -53,6 +54,7 @@ class UserCreateView(CreateView):
             username=data['username'],
             first_name=data['first_name'],
             last_name=data['last_name'],
+            age=data['age'],
             role=data['role'],
             password=data['password']
         )
@@ -66,6 +68,7 @@ class UserCreateView(CreateView):
              'username': user.username,
              'first_name': user.first_name,
              'last_name': user.last_name,
+             'age': user.age,
              'role': user.role,
              'locations': [str(u) for u in user.location.all()]
              })
