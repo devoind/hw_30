@@ -5,7 +5,7 @@ from django.core.paginator import Paginator
 from django.http import JsonResponse
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import ListView, CreateView, DeleteView, UpdateView
+from django.views.generic import ListView, CreateView, DeleteView, UpdateView, DetailView
 
 from users.models import User, Location
 
@@ -40,6 +40,15 @@ class UserListView(ListView):
             'total': page_obj.paginator.count},
             safe=False, json_dumps_params={"ensure_ascii": False}
         )
+
+
+class UserDetailView(DetailView):
+    model = User
+
+    def get(self, request, *args, **kwargs):
+        user = self.get_object()
+        return JsonResponse({'id': user.id, 'name': user.name}, safe=False,
+                            json_dumps_params={"ensure_ascii": False})
 
 
 @method_decorator(csrf_exempt, name='dispatch')

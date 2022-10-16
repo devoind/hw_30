@@ -174,3 +174,13 @@ class AdUploadImageView(UpdateView):
                              "image": self.object.image.url
                              },
                             safe=False, json_dumps_params={"ensure_ascii": False})
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+class AdDeleteView(DeleteView):
+    model = Ad
+    success_url = '/'
+
+    def delete(self, request, *args, **kwargs):
+        super().delete(request, *args, **kwargs)
+        return JsonResponse({'Объявление удалено'}, status=204)
