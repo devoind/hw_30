@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="avito_db_post" uuid="b715768e-d06b-429e-a9c7-2b3ea6f5e8e6">
+    <data-source source="LOCAL" name="avitos_db" uuid="ee7cf942-bf28-41b4-9ae6-c896548b9f7e">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>

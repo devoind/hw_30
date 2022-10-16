@@ -20,8 +20,8 @@ from ads.views import *
 from avito import settings
 
 urlpatterns = [
-    # path('', admin.site.urls),
-    # path('', root),
+    path('', admin.site.urls),
+    path('', root),
     path('cat/', include('ads.urls.cat_urls')),
     path('ad/', include('ads.urls.ad_urls')),
     path('user/', include('users.urls')),

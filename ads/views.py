@@ -156,7 +156,7 @@ class AdDetailView(DetailView):
 
 
 @method_decorator(csrf_exempt, name='dispatch')
-class AdUploadImageView(UpdateView):
+class AdUpdateView(UpdateView):
     model = Ad
     fields = ['image']
 
