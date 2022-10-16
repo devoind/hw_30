@@ -21,7 +21,7 @@ from avito import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('', root),
+    path('', root),
     path('cat/', include('ads.urls.cat_urls')),
     path('ad/', include('ads.urls.ad_urls')),
     path('user/', include('users.urls')),

@@ -47,7 +47,7 @@ class UserDetailView(DetailView):
 
     def get(self, request, *args, **kwargs):
         user = self.get_object()
-        return JsonResponse({'id': user.id, 'name': user.name}, safe=False,
+        return JsonResponse({'id': user.id, 'first_name': user.first_name}, safe=False,
                             json_dumps_params={"ensure_ascii": False})
 
 

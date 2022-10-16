@@ -13,8 +13,8 @@ from ads.models import Category, Ad
 from users.models import User
 
 
-# def root(request):
-#     return JsonResponse({"status": "ok"})
+def root(request):
+    return JsonResponse({"status": "ok"})
 
 
 @method_decorator(csrf_exempt, name='dispatch')
