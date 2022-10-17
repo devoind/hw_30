@@ -76,7 +76,11 @@ class CategoryDeleteView(DeleteView):
 
     def delete(self, request, *args, **kwargs):
         super().delete(request, *args, **kwargs)
-        return JsonResponse({'Категория удалена'}, status=204)
+        return JsonResponse(
+            'Категория удалена',
+            safe=False,
+            status=204
+        )
 
 
 class AdListView(ListView):
@@ -183,4 +187,9 @@ class AdDeleteView(DeleteView):
 
     def delete(self, request, *args, **kwargs):
         super().delete(request, *args, **kwargs)
-        return JsonResponse({'Объявление удалено'}, status=204)
+        return JsonResponse(
+            'Объявление удалено',
+            safe=False,
+            json_dumps_params={"ensure_ascii": False},
+            status=204
+        )

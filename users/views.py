@@ -104,4 +104,8 @@ class UserDeleteView(DeleteView):
 
     def delete(self, request, *args, **kwargs):
         super().delete(request, *args, **kwargs)
-        return JsonResponse({'Пользователь удален'}, status=204)
+        return JsonResponse(
+            'Пользователь удален',
+            safe=False,
+            status=204
+        )
