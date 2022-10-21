@@ -3,6 +3,7 @@ import json
 
 DATA_ADS = "ad.csv"
 JSON_ADS = "ads.json"
+
 DATA_CATEGORIES = "category.csv"
 JSON_CATEGORIES = "categories.json"
 
@@ -23,6 +24,9 @@ def run_convert(csv_file, json_file, model_name):
                 del value['Id']
             else:
                 del value['id']
+            if "location" in value:
+                value['location'] = [int(value['location'])]
+
             if 'is_published' in value:
                 if value['is_published'] == 'TRUE':
                     value['is_published'] = True
@@ -36,7 +40,7 @@ def run_convert(csv_file, json_file, model_name):
         json_f.write(json.dumps(result, ensure_ascii=False))
 
 
-run_convert(DATA_CATEGORIES, JSON_CATEGORIES, 'ads.category')
-run_convert(DATA_ADS, JSON_ADS, 'ads.ad')
-run_convert(DATA_LOC, JSON_LOC, 'users.location')
-run_convert(DATA_USER, JSON_USER, 'users.user')
+# run_convert(DATA_CATEGORIES, JSON_CATEGORIES, 'ads.category')
+# run_convert(DATA_ADS, JSON_ADS, 'ads.ad')
+# run_convert(DATA_LOC, JSON_LOC, 'users.location')
+# run_convert(DATA_USER, JSON_USER, 'users.user')
